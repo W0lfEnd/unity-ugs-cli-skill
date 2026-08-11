@@ -1,9 +1,9 @@
 ---
-name: use-ugs-cli
+name: unity-ugs-cli
 description: Operate Unity Gaming Services through the UGS CLI. Use when Codex needs to discover or install the CLI, inspect its version and help, configure a Unity project or environment, authenticate with Unity Hub or a service account, manage UGS resources, create deployable configuration files, run deploy/fetch with dry-run or reconcile, build CI/CD automation, parse JSON output, work with .ddef/.rc/.js/.sln/.csproj/.cs/.ecc/.eci/.ecr/.ecv/.lb/.ac/.mmq/.ucat/.catalog.csv/.sched/.tr files, or troubleshoot UGS CLI permissions, credentials, configuration, and version differences.
 ---
 
-# Use UGS CLI
+# Unity UGS CLI
 
 Treat the installed executable and its hierarchical `--help` output as the command authority. Keep executable locations session-local; never write a user-provided binary path into this skill, a repository, or persistent project configuration.
 
