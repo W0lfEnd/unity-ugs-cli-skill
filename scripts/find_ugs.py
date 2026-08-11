@@ -26,10 +26,20 @@ PATH_CANDIDATES = (
 )
 
 
+def resolve_file(path: Path) -> str:
+    resolved = path.resolve()
+    if os.name != "nt" and not os.access(resolved, os.X_OK):
+        raise PermissionError(
+            f"UGS CLI exists but is not executable: {resolved}. "
+            f"Run chmod +x {resolved} and try again."
+        )
+    return str(resolved)
+
+
 def resolve_candidate(value: str) -> str | None:
     expanded = Path(value).expanduser()
     if expanded.is_file():
-        return str(expanded.resolve())
+        return resolve_file(expanded)
     located = shutil.which(value)
     return str(Path(located).resolve()) if located else None
 
@@ -103,7 +113,7 @@ def main() -> int:
     try:
         executable, source = resolve_ugs(args.cli)
         version = verify_version(executable) if args.verify else None
-    except (FileNotFoundError, RuntimeError, subprocess.SubprocessError) as exc:
+    except (FileNotFoundError, PermissionError, RuntimeError, OSError, subprocess.SubprocessError) as exc:
         print(str(exc), file=sys.stderr)
         return 1
 

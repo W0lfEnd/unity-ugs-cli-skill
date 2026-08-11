@@ -19,7 +19,15 @@ ugs --version
 ugs --help
 ```
 
-If the executable is not on `PATH`, pass its location to the skill, for example: `UGS CLI: <absolute-path-to-executable>`. State explicitly if Codex is authorized to install the CLI; the skill will not make a persistent installation by default.
+### Platform notes
+
+| Platform | Binary notes | What to tell the skill |
+| --- | --- | --- |
+| Windows | Use npm or the Windows release binary. No `chmod` step is needed. | `OS: Windows; UGS CLI: C:\\tools\\ugs.exe` |
+| macOS | Use npm, Unity's Bash installer, or a macOS release binary that matches Apple Silicon or Intel. Mark a downloaded binary executable. | `OS: macOS (Apple Silicon); UGS CLI: /opt/ugs/ugs` |
+| Linux | Use npm, Unity's Bash installer, or the Linux release binary that matches the runner or host architecture. Mark a downloaded binary executable. | `OS: Linux x64; UGS CLI: /opt/ugs/ugs` |
+
+If the executable is not on `PATH`, pass its absolute location to the skill. State explicitly if Codex is authorized to install the CLI; the skill will not make a persistent installation by default.
 
 ## Use it in Codex
 
@@ -36,6 +44,7 @@ For the best result, state the target, the intended operation, and whether Codex
 | Provide | Why it matters | Example |
 | --- | --- | --- |
 | CLI location, if it is not on `PATH` | Lets Codex verify the exact installed command surface. | `UGS CLI: C:\\tools\\ugs.exe` |
+| Operating system and CPU architecture | Selects the correct binary and shell conventions. | `OS: macOS (Apple Silicon)` |
 | Unity project and environment | Prevents changes against the wrong target. | `Project: <project-id>; environment: staging` |
 | Service and resource scope | Keeps commands narrow and reviewable. | `Remote Config, file config/live.rc` |
 | Desired action | Separates inspection, local file writes, and remote mutations. | `Dry-run deploy only; do not apply it yet.` |

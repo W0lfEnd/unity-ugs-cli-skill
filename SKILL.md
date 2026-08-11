@@ -24,6 +24,7 @@ Treat the installed executable and its hierarchical `--help` output as the comma
 2. Otherwise run the bundled `scripts/find_ugs.py`, resolved relative to this `SKILL.md`; it checks the skill-local `UGS_CLI_EXECUTABLE` override and common UGS command names on `PATH` without scanning arbitrary directories.
 3. If unresolved, check the current shell's command lookup. Ask for the executable location or, when installation is in scope, use an official installation method.
 4. Store the resolved invocation only in a task-specific shell variable such as `$ugsCli` or `ugs_cli`. Do not assume the executable is named exactly `ugs`.
+5. Record the operating system and CPU architecture when a binary is downloaded manually. Use a Windows binary on Windows and a matching macOS or Linux `x64`/`arm64` binary on Unix. On macOS and Linux, ensure a downloaded binary has execute permission before running it.
 
 Examples:
 
@@ -143,6 +144,7 @@ For bulk or risky service operations:
 
 - Pin a CLI version for reproducibility unless the user explicitly wants latest.
 - Verify the downloaded artifact by the strongest official checksum/signature mechanism available for that release.
+- Select a release artifact for the CI runner's operating system and architecture; do not reuse a Windows executable on macOS or Linux runners.
 - Inject secrets at runtime from the CI secret store; do not use literal `ENV` values in a Dockerfile.
 - Run `--version`, `status --json`, and a non-secret target check before deployment.
 - Use `--json`; capture stdout as machine data and stderr as diagnostics.
