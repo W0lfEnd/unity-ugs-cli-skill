@@ -1,0 +1,4 @@
+interface:
+  display_name: "Use UGS CLI"
+  short_description: "Operate Unity Gaming Services from the CLI"
+  default_prompt: "Use $use-ugs-cli to inspect and safely manage this project with UGS CLI."

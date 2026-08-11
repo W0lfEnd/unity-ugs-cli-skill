@@ -1,0 +1,3 @@
+# Python bytecode created while validating the bundled resolver.
+__pycache__/
+*.py[cod]
