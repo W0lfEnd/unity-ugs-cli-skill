@@ -4,6 +4,23 @@
 
 Use this skill when you need to inspect, configure, deploy, fetch, automate, or troubleshoot Unity Gaming Services from the command line. It favors live CLI help, explicit targets, JSON output, dry runs, and verification over guesses.
 
+## Get the UGS CLI
+
+Install the CLI from Unity's [official installation guide](https://services.docs.unity.com/guides/ugs-cli/latest/general/get-started/install-the-cli/). Choose the method that fits your environment:
+
+1. **npm** — with Node.js and npm installed, run `npm install -g ugs`.
+2. **Release binary** — download the correct operating-system asset from the [official GitHub Releases](https://github.com/Unity-Technologies/unity-gaming-services-cli/releases) page. On macOS or Linux, mark the downloaded executable as runnable with `chmod +x <path-to-executable>`.
+3. **macOS/Linux installer** — use the Bash installer and version-pinning options published in Unity's installation guide.
+
+Verify any installation before using it:
+
+```text
+ugs --version
+ugs --help
+```
+
+If the executable is not on `PATH`, pass its location to the skill, for example: `UGS CLI: <absolute-path-to-executable>`. State explicitly if Codex is authorized to install the CLI; the skill will not make a persistent installation by default.
+
 ## Use it in Codex
 
 Invoke the skill directly in your prompt:
